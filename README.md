@@ -36,7 +36,7 @@ Accept: application/json
 ##### Просмотр афиши выбранного кинотеатра
 
 ```http request
-GET {{cinemaUrl}}/api/v1/cinema/{{cinemaUid}}/films?page=1&size=10
+GET {{cinemaUrl}}/api/v1/cinema/{{cinemaUid}}/films
 Accept: application/json
 ```
 
