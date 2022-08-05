@@ -22,21 +22,21 @@
 ##### Просмотр списка всех фильмов, которые идут в кино
 
 ```http request
-GET http://localhost:8070/api/v1/films?page=1&size=10
+GET {{filmsUrl}}/api/v1/films?page=1&size=10
 Accept: application/json
 ```
 
 ##### Просмотр списка всех кинотеатров
 
 ```http request
-GET http://localhost:8060/api/v1/cinema?page=1&size=10
+GET {{cinemaUrl}}/api/v1/cinema?page=1&size=10
 Accept: application/json
 ```
 
 ##### Просмотр афиши выбранного кинотеатра
 
 ```http request
-GET http://localhost:8060/api/v1/cinema/{{cinemaUid}}/films?page=1&size=10
+GET {{cinemaUrl}}/api/v1/cinema/{{cinemaUid}}/films?page=1&size=10
 Accept: application/json
 ```
 
@@ -47,7 +47,7 @@ Accept: application/json
 увеличивается на 1 и в Ticket Service создается ticket со статусом `BOOKED`.
 
 ```http request
-POST http://localhost:8080/api/v1/tickets/cinema/{{cinemaUid}}/films/{{filmUid}}
+POST {{ticketUrl}}/api/v1/tickets/cinema/{{cinemaUid}}/films/{{filmUid}}
 Content-Type: application/json
 Accept: application/json
 X-User-Name: {{username}}
@@ -66,7 +66,7 @@ X-User-Name: {{username}}
 ##### Просмотр информации о билете
 
 ```http request
-GET http://localhost:8080/api/v1/tickets/{{ticketUid}}
+GET {{ticketUrl}}/api/v1/tickets/{{ticketUid}}
 Accept: application/json
 X-User-Name: {{username}}
 ```
@@ -90,7 +90,7 @@ X-User-Name: {{username}}
 возвращается `409 Conflict`.
 
 ```http request
-DELETE http://localhost:8080/api/v1/tickets/{{ticketUid}}
+DELETE {{ticketUrl}}/api/v1/tickets/{{ticketUid}}
 Accept: application/json
 X-User-Name: {{username}}
 ```
