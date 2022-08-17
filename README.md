@@ -14,8 +14,8 @@
 коммуникацию между сервисами вы проектируете и реализуете сами.
 
 * Ticket Service – 8080;
-* Cinema Service – 8070;
-* Film Service – 8060;
+* Film Service – 8070;
+* Cinema Service – 8060;
 
 Полное описание публичного API приведено в спецификации [OpenAPI](openapi.yml).
 

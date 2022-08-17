@@ -224,24 +224,16 @@
 							"    pm.response.to.have.status(200)",
 							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.contains(\"application/json\");",
 							"",
-							"    const cinemaUid = pm.collectionVariables.get(\"cinemaUid\")",
 							"    const filmUid = pm.collectionVariables.get(\"filmUid\")",
 							"",
 							"    const response = pm.response.json();",
 							"",
-							"    const pageSize = Number(pm.request.url.query.get(\"size\"))",
-							"    pm.expect(response.items).to.be.an(\"array\")",
-							"    pm.expect(response.page).to.be.not.undefined",
-							"    pm.expect(response.pageSize).to.be.lte(pageSize)",
-							"    pm.expect(response.totalElements).to.be.not.undefined",
+							"    pm.expect(response).to.be.not.undefined",
+							"    pm.expect(response.name).to.eq(\"Кинотеатр Москва\")",
+							"    pm.expect(response.address).to.eq(\"Ереван, улица Хачатура Абовяна, 18\")",
+							"    pm.expect(response.films).to.be.an(\"array\")",
 							"",
-							"    const cinema = _.find(response.items, { \"cinemaUid\": cinemaUid })",
-							"    pm.expect(cinema).to.be.not.undefined",
-							"    pm.expect(cinema.name).to.eq(\"Кинотеатр Москва\")",
-							"    pm.expect(cinema.address).to.eq(\"Ереван, улица Хачатура Абовяна, 18\")",
-							"    pm.expect(cinema.films).to.be.an(\"array\")",
-							"",
-							"    const film = _.find(cinema.films, { \"filmUid\": filmUid })",
+							"    const film = _.find(response.films, { \"filmUid\": filmUid })",
 							"    pm.expect(film).to.be.not.undefined",
 							"    pm.expect(film.name).to.eq(\"Terminator 2 Judgment day\")",
 							"    pm.expect(film.rating).to.eq(8.6)",
@@ -263,7 +255,7 @@
 					}
 				],
 				"url": {
-					"raw": "{{cinemaUrl}}/api/v1/cinema/:cinemaUid/films?page=1&size=10",
+					"raw": "{{cinemaUrl}}/api/v1/cinema/:cinemaUid/films",
 					"host": [
 						"{{cinemaUrl}}"
 					],
@@ -273,16 +265,6 @@
 						"cinema",
 						":cinemaUid",
 						"films"
-					],
-					"query": [
-						{
-							"key": "page",
-							"value": "1"
-						},
-						{
-							"key": "size",
-							"value": "10"
-						}
 					],
 					"variable": [
 						{
@@ -340,7 +322,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n  \"page\": 1,\n  \"pageSize\": 1,\n  \"totalElements\": 1,\n  \"items\": [\n    {\n      \"cinemaUid\": \"06cc4ba3-ee97-4d29-a814-c40588290d17\",\n      \"name\": \"Кинотеатр Москва\",\n      \"address\": \"Ереван, улица Хачатура Абовяна, 18\",\n      \"films\": [\n        {\n          \"filmUid\": \"049161bb-badd-4fa8-9d90-87c9a82b0668\",\n          \"name\": \"Terminator 2 Judgment day\",\n          \"rating\": 8.6,\n          \"director\": \"James Cameron\",\n          \"producer\": \"James Cameron\",\n          \"genre\": \"Sci-Fi\"\n        }\n      ]\n    }\n  ]\n}"
+					"body": "{\n    \"cinemaUid\": \"06cc4ba3-ee97-4d29-a814-c40588290d17\",\n    \"name\": \"Кинотеатр Москва\",\n    \"address\": \"Ереван, улица Хачатура Абовяна, 18\",\n    \"films\": [\n        {\n            \"filmUid\": \"049161bb-badd-4fa8-9d90-87c9a82b0668\",\n            \"name\": \"Terminator 2 Judgment day\",\n            \"rating\": 8.6,\n            \"director\": \"James Cameron\",\n            \"producer\": \"James Cameron\",\n            \"genre\": \"Sci-Fi\"\n        }\n    ]\n}"
 				}
 			]
 		},
