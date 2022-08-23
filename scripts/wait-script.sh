@@ -2,7 +2,7 @@
 
 pids=()
 for host in "localhost:8060" "localhost:8070" "localhost:8080"; do
-  "$(pwd)"/scripts/wait-for.sh -t 5 "$host" -- echo "Host $host is active" &
+  "$(pwd)"/scripts/wait-for.sh -t 120 "$host" -- echo "Host $host is active" &
   pids+=($!)
 done
 
