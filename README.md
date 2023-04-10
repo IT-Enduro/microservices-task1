@@ -1,6 +1,7 @@
 # Домашняя работа #1
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+
 ![GitHub Classroom Workflow](../../workflows/GitHub%20Classroom%20Workflow/badge.svg?branch=master)
 
 ## Microservices
@@ -177,12 +178,12 @@ CREATE UNIQUE INDEX udx_tickets_ticket_uid ON tickets (ticket_uid);
 
 ```yaml
 films:
-  – id: 1
+  - id: 1
     film_uid: "049161bb-badd-4fa8-9d90-87c9a82b0668"
-    name: "Terminator 2 Judgment day",
-    rating: 8.6,
-    director: "James Cameron",
-    producer: "James Cameron",
+    name: "Terminator 2 Judgment day"
+    rating: 8.6
+    director: "James Cameron"
+    producer: "James Cameron"
     genre: "Sci-Fi"
 ```
 
@@ -211,11 +212,17 @@ film_session:
 1. Каждый сервис имеет свое собственное хранилище, если оно ему нужно. Для локальной разработки можно использовать одну
    базу данных, но каждая система работает _только_ со своей схемой. Запросы к другой схеме _запрещены_.
 2. Для межсервисного взаимодействия использовать HTTP (придерживаться RESTful).
-3. Код хранить на Github, для сборки использовать Github Actions.
-4. Каждый сервис должен быть завернут в docker.
-5. В [build.yml](.github/workflows/classroom.yml) дописать шаги на сборку.
-6. Интеграционные тесты можно проверить локально, для этого нужно импортировать в Postman
-   коллекцию [collection.json](postman/collection.json)]) и environment [local-env.json](postman/local-env.json).
+3. На каждом сервисе сделать специальный endpoint `GET /manage/health`, отдающий 200 ОК, он будет использоваться для
+   проверки доступности сервиса (в [Github Actions](.github/workflows/classroom.yml) в скрипте проверки готовности всех
+   сервисов [wait-script.sh](scripts/wait-script.sh)).
+   ```shell
+   ./scripts/wait-for.sh -t 120 "http://localhost:$port/manage/health" -- echo "Host localhost:$port is active"
+   ```
+4. Код хранить на Github, для сборки использовать Github Actions.
+5. Каждый сервис должен быть завернут в docker.
+6. В [build.yml](.github/workflows/classroom.yml) дописать шаги на сборку.
+7. Интеграционные тесты можно проверить локально, для этого нужно импортировать в Postman
+   коллекцию [collection.json](postman/collection.json)] и environment [local-env.json](postman/local-env.json).
 
 ### Пояснения
 
