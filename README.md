@@ -1,7 +1,6 @@
 # Домашняя работа #1
 
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-
 ![GitHub Classroom Workflow](../../workflows/GitHub%20Classroom%20Workflow/badge.svg?branch=master)
 
 ## Microservices
@@ -209,8 +208,9 @@ film_session:
 
 ### Требования
 
-1. Каждый сервис имеет свое собственное хранилище, если оно ему нужно. Для локальной разработки можно использовать одну
-   базу данных, но каждая система работает _только_ со своей схемой. Запросы к другой схеме _запрещены_.
+1. Каждый сервис имеет свое собственное хранилище, если оно ему нужно. Для локальной разработки можно использовать
+   Postgres 15 в [docker](docker-compose.yml), для этого нужно запустить `docker compose up postgres -d`, поднимется
+   контейнер, будет создан пользователь `program`:`test` и 3 БД: `films`, `tickets`, `cinema`.
 2. Для межсервисного взаимодействия использовать HTTP (придерживаться RESTful).
 3. На каждом сервисе сделать специальный endpoint `GET /manage/health`, отдающий 200 ОК, он будет использоваться для
    проверки доступности сервиса (в [Github Actions](.github/workflows/classroom.yml) в скрипте проверки готовности всех
@@ -225,10 +225,6 @@ film_session:
    коллекцию [collection.json](postman/collection.json)] и environment [local-env.json](postman/local-env.json).
 
 ### Пояснения
-
-Для локальной разработки можно использовать Postgres в docker, для этого нужно запустить
-`docker compose up postgres -d`, поднимется контейнер с Postgres 13, будет создана БД `services`,
-пользователь `program`:`test` и схемы для каждого сервиса.
 
 Для тестирования _все сервисы_ поднимаются через docker compose и для них запускаются тесты.
 
